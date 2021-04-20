@@ -70,4 +70,36 @@ const BootcampSchema = new mongoose.Schema({
       'Other',
     ],
   },
+  averageRating: {
+    type: Number,
+    min: [1, 'Rating must be at least 1'],
+    max: [10, 'Rating cannot be more than 10'],
+  },
+  averageCost: Number,
+  photo: {
+    type: String,
+    default: 'no-photo.jpg',
+  },
+  housing: {
+    type: Boolean,
+    default: false,
+  },
+  jobAssistance: {
+    type: Boolean,
+    default: false,
+  },
+  jobGuarantee: {
+    type: Boolean,
+    default: false,
+  },
+  acceptGi: {
+    type: Boolean,
+    default: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
+
+module.exports = mongoose.model('Bootcamp', BootcampSchema);
