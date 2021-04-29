@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
+const fileupload = require('express-fileupload');
 
 // Start server
 const app = express();
@@ -25,6 +26,9 @@ const courses = require('./routes/courses');
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// File uploading
+app.use(fileupload());
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
