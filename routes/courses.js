@@ -12,7 +12,7 @@ const advancedResults = require('../middleware/advancedResults');
 
 const router = express.Router({ mergeParams: true });
 
-const { protect } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth');
 
 router
   .route('/')
@@ -23,11 +23,11 @@ router
     }),
     getCourses
   )
-  .post(protect, postCourse);
+  .post(protect, authorize('publisher', 'admin'), postCourse);
 router
   .route('/:id')
   .get(getCourse)
-  .put(protect, putCourse)
-  .delete(protect, deleteCourse);
+  .put(protect, authorize('publisher', 'admin'), putCourse)
+  .delete(protect, authorize('publisher', 'admin'), deleteCourse);
 
 module.exports = router;
