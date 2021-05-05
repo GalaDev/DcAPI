@@ -131,7 +131,7 @@ exports.deleteCourse = asyncHandler(async (req, res, next) => {
     return next(
       new ErrorResponse(
         `User ${req.user.id} is not authorized to delete a course to ${course._id}`,
-        404
+        40
       )
     );
   }
