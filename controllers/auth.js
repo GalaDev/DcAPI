@@ -113,7 +113,6 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
     .update(req.params.resettoken)
     .digest('hex');
 
-  console.log(resetPasswordToken.red);
   const user = await User.findOne({
     resetPasswordToken,
   });
