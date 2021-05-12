@@ -57,6 +57,7 @@ const deleteData = async () => {
     await Bootcamp.deleteMany();
     await Course.deleteMany();
     await User.deleteMany();
+    await Review.deleteMany();
     console.log('Data Deleted...'.red.inverse);
     process.exit();
   } catch (err) {
