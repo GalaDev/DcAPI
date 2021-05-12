@@ -4,28 +4,18 @@ const CourseSchema = new mongoose.Schema({
   title: {
     type: String,
     trim: true,
-    required: [true, 'Please add a course title'],
+    required: [true, 'Please add a title for the review'],
+    maxlength: 100,
   },
-  description: {
+  text: {
     type: String,
-    required: [true, 'Please add a description'],
+    required: [true, 'Please add some text'],
   },
-  weeks: {
-    type: String,
-    required: [true, 'Please add number of weeks'],
-  },
-  tuition: {
+  rating: {
     type: Number,
-    required: [true, 'Please add tuition cost'],
-  },
-  minimumSkill: {
-    type: String,
-    required: [true, 'Please add a minimum skill'],
-    enum: ['beginner', 'intermediate', 'advanced'],
-  },
-  scholarshipsAvailable: {
-    type: Boolean,
-    default: false,
+    min: 1,
+    max: 10,
+    required: [true, 'Please add rating between 1 and 10'],
   },
   createdAt: {
     type: Date,
@@ -43,4 +33,4 @@ const CourseSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model('Review', ReviewSchema);
