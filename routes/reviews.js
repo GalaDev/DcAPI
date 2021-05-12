@@ -1,27 +1,19 @@
 const express = require('express');
-const { getReviews } = require('../controllers/courses');
+const { getReviews } = require('../controllers/reviews');
 
-const Course = require('../models/Course');
-const advancedResults = require('../middleware/advancedResults');
+const Review = require('../models/Review');
 
 const router = express.Router({ mergeParams: true });
 
 const { protect, authorize } = require('../middleware/auth');
+const advancedResults = require('../middleware/advancedResults');
 
-router
-  .route('/')
-  .get(
-    advancedResults(Course, {
-      path: 'bootcamp',
-      select: 'name description',
-    }),
-    getCourses
-  )
-  .post(protect, authorize('publisher', 'admin'), postCourse);
-router
-  .route('/:id')
-  .get(getCourse)
-  .put(protect, authorize('publisher', 'admin'), putCourse)
-  .delete(protect, authorize('publisher', 'admin'), deleteCourse);
+router.route('/').get(
+  advancedResults(Review, {
+    path: 'bootcamp',
+    select: 'name description',
+  }),
+  getReviews
+);
 
 module.exports = router;

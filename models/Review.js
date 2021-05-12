@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CourseSchema = new mongoose.Schema({
+const ReviewSchema = new mongoose.Schema({
   title: {
     type: String,
     trim: true,
